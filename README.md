@@ -24,7 +24,7 @@ React Native + TypeScript
 * Intégrer le local storage serai un grand atout pour le mode offline
 * Tout ceci doit se passer sur une seule page
 * Votre imagination sera un grand attout pour vous.
-* Vous devez créer votre branche après avoir cloné le projet et déployer votre travail dessus 
+* Vous devez créer votre branche après avoir cloné et initialiser le projet suivant la technologie utilisée et déployer votre travail dessus 
 * Déposer votre travail ici : https://drive.google.com/drive/folders/1r1EoyqanU5MSWzH_OP8pjpTHCnrXMSMQ?usp=sharing 
 
 > Date limite de dépot du travail 
@@ -59,7 +59,7 @@ React Native + TypeScript
 * Integrating local storage will be a great asset for offline mode
 * All this must happen on one page.
 * Your imagination will be a great asset to you.
-* You must create your branch after cloning the project and deploy your work to it
+* You must create your branch after cloning and initializing the project according to the technology used and deploying your work on it
 * Submit your work here: https://drive.google.com/drive/folders/1r1EoyqanU5MSWzH_OP8pjpTHCnrXMSMQ?usp=sharing
 
 > Deadline for submitting the work
