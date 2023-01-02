@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+
+  test.dev.mobile-app.react-native:
+    build:
+      context: $COMPOSE_BUILD_DIR
+      dockerfile: docker/${SERVICE_ENV}/app/Dockerfile
+    env_file:
+      - .env
+    hostname: $APP_HOSTNAME
+    container_name: $APP_NAME
+    restart: "on-failure"
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: $COMPOSE_BUILD_DIR
+        target: /app
+      - type: volume
+        source: node_modules
+        target: /app/node_modules
+    ports:
+      - "${APP_PORT}:19000"
+
