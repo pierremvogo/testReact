@@ -1,19 +1,51 @@
-import { IPublicationDataSource } from "@features/publication/domain/ports/source/IPublicationDataSource";
+import { IPublicationDataSource } from "../../domain/ports/source/IPublicationDataSource";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Post } from "../../domain/entities/Post";
 
 export class PublicationTestDataSource implements IPublicationDataSource {
-  createOtp(): Promise<any> {
-    return Promise.resolve(undefined);
+  async createPost(input: CreatePostDto): Promise<Post> {
+    const newPost: Post = {
+      user: {
+        id: "jhjdhjf",
+        lastName: " Junior",
+        firstName: "Temgoua",
+      },
+      like: [],
+      comments: [],
+      id: input.userId,
+      description: input.description,
+      image: input.image,
+      date: Date.now(),
+    };
+    let posts: Post[] = [];
+    try {
+      const value = await AsyncStorage.getItem("POST");
+      if (value !== null) {
+        posts = JSON.parse(value);
+        posts.push(newPost);
+        await AsyncStorage.setItem("POST", JSON.stringify(posts));
+      } else {
+        posts.push(newPost);
+        await AsyncStorage.setItem("POST", JSON.stringify(posts));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    return newPost;
   }
 
-  signIn(): Promise<any> {
-    return Promise.resolve(undefined);
-  }
-
-  signUp(): Promise<any> {
-    return Promise.resolve(undefined);
-  }
-
-  verifyOtp(): Promise<any> {
-    return Promise.resolve(undefined);
+  async findAllPost(): Promise<Post[]> {
+    let posts: Post[] = [];
+    try {
+      const value = await AsyncStorage.getItem("POST");
+      if (value !== null) {
+        posts = JSON.parse(value);
+      } else {
+        posts = [];
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    return posts;
   }
 }

@@ -1,6 +1,6 @@
+import { Post } from "../../entities/Post";
+
 export interface IPublicationDataSource {
-  signIn: () => Promise<any>;
-  signUp: () => Promise<any>;
-  createOtp: () => Promise<any>;
-  verifyOtp: () => Promise<any>;
+  createPost: (input: CreatePostDto) => Promise<Post>;
+  findAllPost: () => Promise<Post[]>;
 }

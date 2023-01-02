@@ -1,23 +1,16 @@
-import { IClient } from "@core/ports/client/IClient";
-import { ClientFactory } from "@infra/client/factory/ClientFactory";
-import { IPublicationDataSource } from "@features/publication/domain/ports/source/IPublicationDataSource";
+import { IPublicationDataSource } from "../../domain/ports/source/IPublicationDataSource";
+import { ClientFactory } from "../../../../infra/client/factory/ClientFactory";
+import { IClient } from "../../../../core/ports/client/IClient";
+import { Post } from "../../domain/entities/Post";
 
 export class PublicationRealDataSource implements IPublicationDataSource {
   private client: IClient = ClientFactory.getClient();
 
-  createOtp(): Promise<any> {
-    return Promise.resolve(undefined);
+  createPost(input: CreatePostDto): Promise<Post> {
+    return Promise.resolve({} as Post);
   }
 
-  signIn(): Promise<any> {
-    return Promise.resolve(undefined);
-  }
-
-  signUp(): Promise<any> {
-    return Promise.resolve(undefined);
-  }
-
-  verifyOtp(): Promise<any> {
-    return Promise.resolve(undefined);
+  findAllPost(): Promise<Post[]> {
+    return Promise.resolve([]);
   }
 }
