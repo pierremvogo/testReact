@@ -14,7 +14,10 @@ export const globalStyles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
   },
-  text14Lite: {},
+  text14Lite: {
+    fontSize: 14,
+    color: "#3a3a3a",
+  },
   text12: {},
   text12Bold: {},
   text12Lite: {

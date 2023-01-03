@@ -16,6 +16,7 @@ import {
   CommentContextData,
 } from "../../../context/CommentContex";
 import { getTimeWithDuration } from "../../../../core/utils/functions";
+import FeatherIcon from "react-native-vector-icons/Feather";
 
 export type PostProps = {
   post: Post;
@@ -43,7 +44,9 @@ const PostItem: React.FC<PostProps> = ({ post, commentInputRef }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.profil_pic}></View>
+        <View style={styles.profil_pic}>
+          <FeatherIcon name="user" size={30} />
+        </View>
         <View style={styles.text_header}>
           <Text style={globalStyles.text16Bold}>
             {post.user.lastName + " " + post.user.firstName}
@@ -59,34 +62,50 @@ const PostItem: React.FC<PostProps> = ({ post, commentInputRef }) => {
           <Text style={globalStyles.text16}>{post.description}</Text>
         </View>
         <View>
-          <Image
-            source={{ uri: post.image }}
-            style={{
-              width: "100%",
-              maxHeight: 600,
-              aspectRatio: 16 / 9,
-              // resizeMode: "contain",
-              backgroundColor: "#000000",
-            }}
-          />
+          {post.image && (
+            <Image
+              source={{ uri: post.image }}
+              style={{
+                width: "100%",
+                maxHeight: 600,
+                aspectRatio: 16 / 16,
+                // resizeMode: "contain",
+                backgroundColor: "#000000",
+              }}
+            />
+          )}
         </View>
         {isDisplay && <CommentList comments={post.comments} />}
 
         <View style={styles.footer}>
           <TouchableOpacity>
-            <View>
+            <View style={styles.icon_message}>
+              <FeatherIcon name="heart" size={18} style={styles.icon} />
               <Text>J'aime {post.like.length}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleComment}>
-            <View>
+            <View style={styles.icon_message}>
+              <FeatherIcon
+                name="message-square"
+                size={18}
+                style={styles.icon}
+              />
               <Text>Commenter</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setIsDisplay((prev) => !prev)}>
-            <View>
-              <Text>{isDisplay ? "Cacher" : "Voir commentaire"}</Text>
-            </View>
+            {isDisplay ? (
+              <View style={styles.icon_message}>
+                <FeatherIcon name="eye-off" size={18} style={styles.icon} />
+                <Text>Cacher</Text>
+              </View>
+            ) : (
+              <View style={styles.icon_message}>
+                <FeatherIcon name="eye" size={18} style={styles.icon} />
+                <Text>Voir</Text>
+              </View>
+            )}
           </TouchableOpacity>
         </View>
       </View>
@@ -109,7 +128,9 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 50,
-    backgroundColor: "red",
+    backgroundColor: "rgba(199,199,199,0.9)",
+    justifyContent: "center",
+    alignItems: "center",
     marginRight: 8,
   },
   use_name: {
@@ -132,6 +153,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 20,
     paddingTop: 16,
+  },
+  icon_message: {
+    flexDirection: "row",
+  },
+  icon: {
+    marginRight: 4,
   },
 });
 

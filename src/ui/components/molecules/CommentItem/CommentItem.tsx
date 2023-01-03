@@ -15,6 +15,7 @@ import {
   CommentContextData,
 } from "../../../context/CommentContex";
 import { getTimeWithDuration } from "../../../../core/utils/functions";
+import FeatherIcon from "react-native-vector-icons/Feather";
 
 export type CommentItemType = {
   comment: Comment;
@@ -63,13 +64,15 @@ const CommentItem: React.FC<CommentItemType> = ({ comment }) => {
 
   return (
     <View style={styles.header}>
-      <View style={styles.profil_pic}></View>
+      <View style={styles.profil_pic}>
+        <FeatherIcon name="user" size={24} />
+      </View>
       <View style={styles.text_header}>
         <View style={styles.name_text}>
           <Text style={globalStyles.text14Bold}>
             {comment.user.lastName + " " + comment.user.firstName}
           </Text>
-          <Text style={globalStyles.text14}> {comment.text}</Text>
+          <Text style={[globalStyles.text14Lite]}> {comment.text}</Text>
         </View>
         <View style={styles.actions}>
           <Text style={{ marginRight: 10 }}>
@@ -102,7 +105,9 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 50,
-    backgroundColor: "red",
+    backgroundColor: "rgba(199,199,199,0.9)",
+    justifyContent: "center",
+    alignItems: "center",
     marginRight: 8,
   },
   use_name: {

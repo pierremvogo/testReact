@@ -37,7 +37,7 @@ const PostList: React.FC<PostListProps> = ({
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-  }, [postss]);
+  }, []);
 
   return (
     <>

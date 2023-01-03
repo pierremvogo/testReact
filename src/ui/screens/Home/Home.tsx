@@ -5,8 +5,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  FlatList,
-  RefreshControl,
+  Image,
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
@@ -14,19 +13,21 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
 } from "react-native";
 import { Post } from "../../../feature/publication/domain/entities/Post";
 import { wait } from "../../../core/utils/functions";
 import { CreatePostUsecase } from "../../../feature/publication/domain/usecases/CreatePostUsecase";
 import { PublicationDataSourceFactory } from "../../../feature/publication/infra/source/factory/PublicationDataSourceFactory";
 import { FindPostsUsecase } from "../../../feature/publication/domain/usecases/FindPostsUsecase";
-import { imageBase64 } from "../../../core/utils/constants";
 import PostList from "../../components/molecules/PostList/PostList";
 import { CommentContext } from "../../context/CommentContex";
 import { PostContext } from "../../context/PostContext";
 import { User } from "../../../feature/publication/domain/entities/User";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Comment } from "../../../feature/publication/domain/entities/Comment";
+import * as ImagePicker from "expo-image-picker";
+import Icon from "react-native-vector-icons/Feather";
+import FeatherIcon from "react-native-vector-icons/Feather";
 
 const Home = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -82,12 +83,13 @@ const Home = () => {
         .execute({
           description: publishDescription,
           userId: Date.now().toString(),
-          image: imageBase64,
+          image: image,
         })
         .then((post) => {
           setPosts((prev) => [post, ...prev]);
         });
       setPublishDescription("");
+      setImage("");
       setWantPublish(false);
     }
   };
@@ -117,6 +119,7 @@ const Home = () => {
         });
       commentInputRef.current?.clear();
       setTextComment("");
+      setIsInComment(false);
       setIsPost((prev) => !prev);
     } else {
       posts.map((p) =>
@@ -131,6 +134,8 @@ const Home = () => {
       commentInputRef.current?.blur();
       setPosts(posts);
       setIsEditComment(false);
+      setTextComment("");
+      setIsInComment(false);
       await AsyncStorage.setItem("POST", JSON.stringify(posts));
     }
   };
@@ -149,6 +154,17 @@ const Home = () => {
     },
     [textComment],
   );
+  const [image, setImage] = useState<string>("");
+
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [16, 16],
+      quality: 1,
+    });
+    setImage(result.uri as string);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -174,52 +190,92 @@ const Home = () => {
                   <View style={styles.add_icon}>
                     <Text style={{ fontSize: 24, fontWeight: "bold" }}>
                       {" "}
-                      {wantPublish ? "X" : "+"}
+                      {wantPublish ? (
+                        <Icon name="x" size={24} />
+                      ) : (
+                        <Icon name="plus" size={24} />
+                      )}
                       {""}
                     </Text>
                   </View>
                 </TouchableOpacity>
               </View>
             </View>
-            {wantPublish && (
-              <View style={styles.post_create}>
-                <View>
-                  <Text
+            <ScrollView>
+              {wantPublish && (
+                <View style={styles.post_create}>
+                  <View
                     style={{
-                      fontSize: 18,
-                      marginBottom: 16,
-                      marginTop: 16,
-                      paddingLeft: 16,
-                      fontWeight: "500",
-                    }}
-                  >
-                    Créer une nouvelle publication
-                  </Text>
-                </View>
-                <View style={styles.input_upload}>
-                  <View style={styles.input}>
-                    <TextInput
-                      multiline
-                      placeholder="Entrer la description"
-                      value={publishDescription}
-                      onChangeText={(value) => setPublishDescription(value)}
-                    />
-                  </View>
-                  <TouchableOpacity
-                    style={{
-                      flex: 1,
-                      justifyContent: "center",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
                       alignItems: "center",
                     }}
                   >
-                    <Text>Upload image</Text>
-                  </TouchableOpacity>
+                    <View style={styles.profil_pic}>
+                      <FeatherIcon name="user" size={26} />
+                    </View>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        marginBottom: 16,
+                        marginTop: 16,
+                        paddingLeft: 16,
+                        fontWeight: "500",
+                      }}
+                    >
+                      Créer une nouvelle publication
+                    </Text>
+                  </View>
+                  <View style={styles.input_upload}>
+                    <View style={styles.input}>
+                      <TextInput
+                        multiline
+                        placeholder="Entrer la description"
+                        value={publishDescription}
+                        onChangeText={(value) => setPublishDescription(value)}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        flex: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <TouchableOpacity
+                        style={{
+                          justifyContent: "center",
+                          alignItems: "center",
+                          backgroundColor: "aliceblue",
+                          borderRadius: 46,
+                          width: 46,
+                          height: 46,
+                        }}
+                        onPress={pickImage}
+                      >
+                        <Icon name="camera" size={24} />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                  {image && (
+                    <Image
+                      source={{ uri: image }}
+                      style={{
+                        width: "100%",
+                        maxHeight: 600,
+                        aspectRatio: 16 / 16,
+                        // resizeMode: "contain",
+                        backgroundColor: "#000000",
+                      }}
+                    />
+                  )}
+
+                  <View style={styles.button}>
+                    <Button onPress={handleSubmit} title="Creer" />
+                  </View>
                 </View>
-                <View style={styles.button}>
-                  <Button onPress={handleSubmit} title="Creer" />
-                </View>
-              </View>
-            )}
+              )}
+            </ScrollView>
           </View>
         </TouchableWithoutFeedback>
 
@@ -271,7 +327,9 @@ const Home = () => {
                 fontWeight: "500",
               }}
             >
-              Ajouter un commentaire
+              {isEditComment
+                ? "Modifier le commentaire"
+                : "Ajouter un commentaire"}
             </Text>
             <TextInput
               ref={commentInputRef}
@@ -286,7 +344,13 @@ const Home = () => {
               style={styles.send_button}
               onPress={handleSendComment}
             >
-              <Text>{isEditComment ? "Modifier" : "Envoyer"}</Text>
+              <Text>
+                {isEditComment ? (
+                  <Icon name="edit-3" size={24} />
+                ) : (
+                  <Icon name="send" size={24} />
+                )}
+              </Text>
             </TouchableOpacity>
           </View>
         )}
@@ -323,11 +387,10 @@ const styles = StyleSheet.create({
   add_icon: {
     width: 40,
     height: 40,
-    borderRadius: 32,
+    borderRadius: 40,
     backgroundColor: "#EFEFEF",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: 24,
   },
   body: {
     marginTop: 16,
@@ -375,6 +438,14 @@ const styles = StyleSheet.create({
   button: {
     margin: 16,
     backgroundColor: "aliceblue",
+  },
+  profil_pic: {
+    height: 46,
+    width: 46,
+    borderRadius: 100,
+    backgroundColor: "rgba(199,199,199,0.9)",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
