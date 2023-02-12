@@ -25,11 +25,10 @@ React Native + TypeScript
 * Tout ceci doit se passer sur une seule page
 * Votre imagination sera un grand attout pour vous.
 * Vous devez créer votre branche après avoir cloné et initialiser le projet suivant la technologie utilisée et déployer votre travail dessus 
-* Déposer votre travail ici : https://drive.google.com/drive/folders/1r1EoyqanU5MSWzH_OP8pjpTHCnrXMSMQ?usp=sharing 
-
+* Déposer votre travail ici : https://drive.google.com/drive/folders/17ydgCQvjQp2s8TTAigbHYNn7e2hSKds9?usp=sharing
 > Date limite de dépot du travail 
 
-Mardi 03 Janvier 2023 à 18h00
+Jeudi 16 Février 2023 à 18h00
 
 Enjoy your game ! 
 
@@ -60,8 +59,7 @@ React Native + TypeScript
 * All this must happen on one page.
 * Your imagination will be a great asset to you.
 * You must create your branch after cloning and initializing the project according to the technology used and deploying your work on it
-* Submit your work here: https://drive.google.com/drive/folders/1r1EoyqanU5MSWzH_OP8pjpTHCnrXMSMQ?usp=sharing
-
+* Submit your work here: https://drive.google.com/drive/folders/17ydgCQvjQp2s8TTAigbHYNn7e2hSKds9?usp=sharing
 > Deadline for submitting the work
 
-Tuesday January 3, 2023 at 6:00 p.m.
+Tursday Febuary 16, 2023 at 6:00 p.m.
