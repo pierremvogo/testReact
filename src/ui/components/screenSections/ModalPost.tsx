@@ -8,12 +8,12 @@ const ModalPost = () => {
 		<View>
 			<Text style={{ color: '#eee', fontSize: 17, marginTop: 10, fontWeight: 'bold' }}>Stories</Text>
 			<ScrollView horizontal style={styles.container}>
-				<Image source={require('../../../media/react.jpg')} style={styles.img} />
-				<Image source={require('../../../media/react.jpeg')} style={styles.img} />
-				<Image source={require('../../../media/react.png')} style={styles.img} />
-				<Image source={require('../../../media/react.jpg')} style={styles.img} />
-				<Image source={require('../../../media/react.jpeg')} style={styles.img} />
-				<Image source={require('../../../media/react.png')} style={styles.img} />
+				<Image source={require('../../../media/react2.jpg')} style={styles.img} />
+				<Image source={require('../../../media/react3.jpeg')} style={styles.img} />
+				<Image source={require('../../../media/react1.png')} style={styles.img} />
+				<Image source={require('../../../media/react2.jpg')} style={styles.img} />
+				<Image source={require('../../../media/react3.jpeg')} style={styles.img} />
+				<Image source={require('../../../media/react1.png')} style={styles.img} />
 			</ScrollView>
 		</View>
     )

@@ -1,65 +1,21 @@
-# test-dev-mobil-app : Recrutement d'un développeur Mobile/Web
+# test-dev-mobil-app : How to execute the project
 
-## Version en Français
-> Description
+After cloning this React Native project, you need to follow these steps to launch it on your phone:
 
-Il est question ici de développer une petite application mobile : android/Ios. 
-Elle aura pour mission de permettre l'envoie des pulications et les lister automatiquement sur la même page.
+> Steps :
 
-> Langagues et Technologies 
+* Make sure you have Node.js installed on your computer. You can check this by opening a command prompt and typing node -v. If Node.js is installed, you should see the installed version. If Node.js is not installed, you can download it from the official website: https://nodejs.org/en/ .
+* Install Expo CLI by typing npm install -g expo-cli in your command prompt. This will install Expo CLI globally on your computer.
+* Open your terminal at the root of the cloned project.
+* Install the project dependencies by typing 'npm install' in your terminal.
+* Once all the dependencies are installed, type 'expo start' in your terminal to launch the Expo development server.
+* Open the Expo application on your phone. If you have not yet installed it, you can download it from the Google Play Store (Android).
+* Scan the QR code displayed in your order prompt with the Expo app on your phone. This should open the app on your phone.
+* If everything has been done correctly, you should see the application open on your phone and you can use it normally.
 
-React Native + TypeScript
+> Notice
 
-> Fonctionnalités
-
-* Charger un post : texte et images puis le publier 
-* Lister automatiquement le post publier dans une liste d'actualité qui se trouve en dessous du input d'envoie de la publication
-* Intégrer les commentaires sur chaque publication : texte, date d'envoie, modifier, supprimer
-* Utiliser le Skeleton loading pour le chargement progressif des publications et des commentaires 
-
-> Recommandations
-
-* Utiliser les tests unitaires avec un outils qui vous convient
-* Utiliser les tests de User Experience UX avec un outils qui vous convient
-* Intégrer le local storage serai un grand atout pour le mode offline
-* Tout ceci doit se passer sur une seule page
-* Votre imagination sera un grand attout pour vous.
-* Vous devez créer votre branche après avoir cloné et initialiser le projet suivant la technologie utilisée et déployer votre travail dessus 
-* Déposer votre travail ici : https://drive.google.com/drive/folders/17ydgCQvjQp2s8TTAigbHYNn7e2hSKds9?usp=sharing
-> Date limite de dépot du travail 
-
-Jeudi 16 Février 2023 à 18h00
-
-Enjoy your game ! 
+Make sure your computer and phone are connected to the same Wi-Fi network to make the application work properly.
 
 
 
-
-## English Version
-> Description
-
-It is a question here of developing a small mobile application: android/Ios.
-Its mission will be to allow the sending of publications and list them automatically on the same page.
-
-> Languages ​​and Technologies 
-
-React Native + TypeScript
-
-> Fonctionnalities
-
-* Upload a post: text and images then publish it
-* Automatically list the published post in a news list which is below the input to send the publication
-* Integrate comments on each publication: text, date sent, modify, delete
-* Use Skeleton loading for progressive loading of posts and comments
-
-> Recommendations
-* Use unit tests with a tool that suits you
-* Use User Experience UX tests with a tool that suits you
-* Integrating local storage will be a great asset for offline mode
-* All this must happen on one page.
-* Your imagination will be a great asset to you.
-* You must create your branch after cloning and initializing the project according to the technology used and deploying your work on it
-* Submit your work here: https://drive.google.com/drive/folders/17ydgCQvjQp2s8TTAigbHYNn7e2hSKds9?usp=sharing
-> Deadline for submitting the work
-
-Tursday Febuary 16, 2023 at 6:00 p.m.

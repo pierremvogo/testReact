@@ -1,7 +1,8 @@
 import { ScrollView, StyleSheet, Alert, View, Text, Modal, Image, Button, RefreshControl } from "react-native"
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import * as ImagePicker from 'expo-image-picker'
 import * as SQLite from 'expo-sqlite'
+import SkeletonLoader from 'expo-skeleton-loader'
 import { FontAwesome5, Ionicons } from '@expo/vector-icons'
 import PostBox from "./PostBox"
 import Input from "../elements/Input"
@@ -14,8 +15,6 @@ const wait = (timeout: any) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
-
-
 const PostsList = () => {
 
 	const [posts, setPosts] = useState([])
@@ -25,7 +24,12 @@ const PostsList = () => {
 	const [postId, setPostId] = useState(0)
 	const [refreshing, setRefreshing] = useState(false)
     const [key, setKey] = useState(0)
-    const mounted = useRef<any>()
+    
+	const [loading, setLoading] = useState(true)
+
+	useEffect(() => {
+		setTimeout(() => setLoading(false), 2000);
+	}, [])
 
 
 	const openModalUpdate = (id: number, data: any) => {
@@ -138,24 +142,44 @@ const PostsList = () => {
 		>
 
 			{
-				posts !== [] ?
+				posts.length == 0 ?
+						<View>
+							<Image source={require('../../../media/empty.png')} style={{ width: 200, height: 200, alignSelf: 'center', marginTop: 50, borderRadius: 100, resizeMode: 'contain' }} />
+							<Text style={{ textAlign: 'center', marginTop: 20, color: 'violet', fontWeight: 'bold', fontSize: 17 }}>No item to display !</Text>
+							<Text style={{ textAlign: 'center', marginTop: 5, color: '#aaa', fontSize: 16 }}>You can publish by clicking on the pen icon at the top left.</Text>
+						</View>
+					:
 						posts.map(({id, description, date, image}) => {
 							return(
-								<PostBox 
-									key={id}
-									name='Gaëlle Tamho'
-									time={date}
-									text={description}
-									imageUrl={image}
-									onReply={() => {alert('Reply this post !!')}}
-									onEdit={() => openModalUpdate(id, {'id': id, 'description': description, 'date': date, 'image': image })}
-									onDelete={() => deletePost(id)}
-								/>
+								<SkeletonLoader 
+									key={id} 
+									loading={loading} 
+									highlightColor="#F5F5F5"
+									speed={3000}
+									animationDirection="horizontal"
+									layout={[
+										{ width: 200, height: 40, borderRadius: 8 },
+										{ width: 100, height: 20, borderRadius: 8, marginTop: 10 },
+										{ width: 300, height: 10, marginTop: 20 },
+									]}
+									style={{
+										flex: 1,
+										alignItems: 'center',
+										justifyContent: 'center',
+									}}
+								>
+									<PostBox 
+										name='Gaëlle Tamho'
+										time={date}
+										text={description}
+										imageUrl={image}
+										onReply={() => {alert('Reply this post !!')}}
+										onEdit={() => openModalUpdate(id, {'id': id, 'description': description, 'date': date, 'image': image })}
+										onDelete={() => deletePost(id)}
+									/>
+								</SkeletonLoader>
 							)
 						})
-					:
-						
-						<Text style={{ textAlign: 'center', marginTop: 50, color: '#aaa', fontWeight: 'bold', fontSize: 17 }}>No item to display !</Text>
 			}
 
 			<Modal visible={isModalVisible} transparent={true} animationType='fade' presentationStyle='overFullScreen'>
