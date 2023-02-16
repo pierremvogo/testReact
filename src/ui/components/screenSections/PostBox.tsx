@@ -40,14 +40,7 @@ const PostBox = ({imageUrl, name, time, text, onDelete, onEdit, onReply}: {image
 				</View>
 
 				<View style={styles.actions}>
-					{/* <MaterialCommunityIcons 
-						name="message-reply-text" 
-						size={24} 
-						color="#4ADEDE" 
-						style={styles.icons} 
-						onPress={onReply} 
-						android_ripple={{color: '#4ADEDE', borderless: false}}
-					/> */}
+					
 					<FontAwesome 
 						name="edit" 
 						size={24} 

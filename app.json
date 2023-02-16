@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#fff"
-      }
+      },
+      "package": "com.jugalux.testdevmobilapp"
     },
     "web": {
       "favicon": "./assets/logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ee22bf85-7e26-4b0b-98ba-126475e6415a"
+      }
     }
   }
 }
