@@ -17,27 +17,37 @@ const PostBox = ({imageUrl, name, time, text, onDelete, onEdit, onReply}: {image
 					<Text style={styles.time}>{time}</Text>
 				</View>
 
-				<View style={styles.textBoxPost}>
-					<Text style={styles.textPost}>{text}</Text>
-				</View>
+				{
+					text ? 
+						<View style={styles.textBoxPost}>
+							<Text style={styles.textPost}>{text}</Text>
+						</View>
+					:	
+					 	null
+				}
 				<View>
-					<Image
-						style={styles.image}
-						source={{
-							uri: imageUrl,
-						}}
-					/>
+					{
+						imageUrl ? 
+							<Image
+								style={styles.image}
+								source={{
+									uri: imageUrl,
+								}}
+							/>
+						:
+						 null
+					}
 				</View>
 
 				<View style={styles.actions}>
-					<MaterialCommunityIcons 
+					{/* <MaterialCommunityIcons 
 						name="message-reply-text" 
 						size={24} 
 						color="#4ADEDE" 
 						style={styles.icons} 
 						onPress={onReply} 
 						android_ripple={{color: '#4ADEDE', borderless: false}}
-					/>
+					/> */}
 					<FontAwesome 
 						name="edit" 
 						size={24} 
