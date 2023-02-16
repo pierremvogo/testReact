@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, Pressable, ScrollView } from "react-native"
+import { View, Image, StyleSheet, Text, ScrollView } from "react-native"
 import React from 'react'
 
 
@@ -6,6 +6,7 @@ const ModalPost = () => {
 	  
     return (
 		<View>
+			<Text style={{ color: '#eee', fontSize: 17, marginTop: 10, fontWeight: 'bold' }}>Stories</Text>
 			<ScrollView horizontal style={styles.container}>
 				<Image source={require('../../../media/react.jpg')} style={styles.img} />
 				<Image source={require('../../../media/react.jpeg')} style={styles.img} />

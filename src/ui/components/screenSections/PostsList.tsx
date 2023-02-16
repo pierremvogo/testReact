@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Alert, View, Text, Modal, Image, Button } from "react-native"
-import React, { useEffect, useState } from 'react'
+import { ScrollView, StyleSheet, Alert, View, Text, Modal, Image, Button, RefreshControl } from "react-native"
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import * as ImagePicker from 'expo-image-picker'
 import * as SQLite from 'expo-sqlite'
 import { FontAwesome5, Ionicons } from '@expo/vector-icons'
@@ -10,6 +10,12 @@ import SkeletonLoader from 'expo-skeleton-loader'
 
 const db = SQLite.openDatabase('db.TestDevMobileApp')
 
+//Refresh control
+const wait = (timeout: any) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
+
 
 const PostsList = () => {
 
@@ -18,6 +24,10 @@ const PostsList = () => {
 	const [newImage, setNewImage] = useState('')
     const [newDescription, setNewDescription] = useState('')
 	const [postId, setPostId] = useState(0)
+	const [refreshing, setRefreshing] = useState(false)
+    const [key, setKey] = useState(0)
+    const mounted = useRef<any>()
+
 
 	const openModalUpdate = (id: number, data: any) => {
 		setPostId(id)
@@ -63,8 +73,6 @@ const PostsList = () => {
 
 	}, [])
 
-	//console.log(posts)
-
 	const updatePost = (postId: number) => {
 
 		if (newDescription === '' || newImage === null) {
@@ -82,9 +90,10 @@ const PostsList = () => {
 				[newDescription, newImage, postId],
 				(tx, results) => {
 					if (results.rowsAffected > 0) {
-						Alert.alert('Success', 'The post has been successfully updated.');
+						Alert.alert('Success', 'The post has been successfully updated.')
+						setModalVisible(false)
 					} else {
-						Alert.alert('Error', "An error occurred while updating the post.");
+						Alert.alert('Error', "An error occurred while updating the post.")
 					}
 				}
 			)
@@ -107,8 +116,27 @@ const PostsList = () => {
 		})
 	}
 
+	//Refresh control
+    const onRefresh = useCallback(() => {
+        setRefreshing(true)
+        setKey((prevKey) => prevKey + 1)
+        wait(2000).then(() => setRefreshing(false))
+    }, [])
+
+
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView 
+			style={styles.container}
+			key={key}
+                refreshControl={
+                    <RefreshControl
+						colors={['#261629']}
+						refreshing={refreshing}
+						onRefresh={onRefresh}
+                    />
+            }
+
+		>
 
 			{
 				posts !== [] ?
