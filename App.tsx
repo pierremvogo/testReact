@@ -12,27 +12,14 @@ import store from "./src/ui/redux/store";
 import PubElement from "./src/ui/components/Pub/PubElement";
 function App() {
   const [data, setData] = useState([
-    { id: 1, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 2, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
-    { id: 3, description: "sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
+    { id: 1, description: "Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice." },
+    { id: 1, description: "Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice." },
+    { id: 1, description: "Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice." },
+    { id: 1, description: "Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice." },
+    { id: 1, description: "Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice." },
+    { id: 1, description: "Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice." },
+    { id: 1, description: "Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice." },
+    { id: 1, description: "Creating a slice requires a string name to identify the slice, an initial state value, and one or more reducer functions to define how the state can be updated. Once a slice is created, we can export the generated Redux action creators and the reducer function for the whole slice." },
   ])
 
   return (
