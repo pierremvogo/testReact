@@ -60,6 +60,15 @@ const PostsList = () => {
     }
 
 	useEffect(() => {
+		const intervalId = setInterval(() => {
+		  updatePostList()
+		}, 1000)
+	  
+		return () => clearInterval(intervalId)
+	}, [])
+
+	const updatePostList = () => {
+
 		// get post List and set it to posts state
         db.transaction((tx) => {
             tx.executeSql(
@@ -73,8 +82,7 @@ const PostsList = () => {
                 }
             )
         })
-
-	}, [])
+	}
 
 	const updatePost = (postId: number) => {
 
@@ -94,6 +102,7 @@ const PostsList = () => {
 				(tx, results) => {
 					if (results.rowsAffected > 0) {
 						Alert.alert('Success', 'The post has been successfully updated.')
+						updatePostList()
 						setModalVisible(false)
 					} else {
 						Alert.alert('Error', "An error occurred while updating the post.")
@@ -110,9 +119,10 @@ const PostsList = () => {
 				[postId],
 				(tx, results) => {
 					if (results.rowsAffected > 0) {
-					Alert.alert('Success', 'The post has been successfully deleted.');
+						Alert.alert('Success', 'The post has been successfully deleted.')
+						updatePostList()
 					} else {
-					Alert.alert('Erreur', "An error occurred while deleting the post.");
+						Alert.alert('Erreur', "An error occurred while deleting the post.")
 					}
 				}
 			)
